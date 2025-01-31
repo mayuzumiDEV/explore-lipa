@@ -1,0 +1,168 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    scroll-behavior: smooth;
+    font-family: "Poppins", sans-serif;
+}
+
+.header-container {
+    padding: 170px 10%;
+    transition: all 0.5s ease; 
+    justify-content: center;  
+    display: flex; 
+}
+
+.bg {
+    width: 100%;
+    height: 100vh;
+    background-image: url('/static/assets/462640202_968949955060890_4922743977401558402_n.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    animation: bgChange 50s infinite;
+    transition: background-image 2s ease-in-out;
+}
+
+@keyframes bgChange {
+    0% {
+        background-image: url('/static/assets/462640202_968949955060890_4922743977401558402_n.png');
+    }
+    25% {
+        background-image: url('/static/assets/culture/Plaza Independencia/IMG_20240904_153249_083.jpg');
+    }
+    45% {
+        background-image: url('/static/assets/culture/San Sebastian Church/IMG_20240819_112243_358.jpg');
+    }
+    50% {
+        background-image: url('/static/assets/at3.jpg');
+    }
+    100% {
+        background-image: url('/static/assets/462640202_968949955060890_4922743977401558402_n.png');
+    }
+}
+
+.lgcontainer {
+    width: 100%;
+    max-width: 350px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-b-container{
+    background: #e7e7e759;
+    margin: 0 30px;
+    border-radius: 20px;
+}
+
+.toggle-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.toggle-button {
+    flex: 1;
+    padding: 8px 0;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000000;
+    background: transparent;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.toggle-button.active {
+    background: linear-gradient(90deg, #ff0000, #ff3e3e);
+    color: #ffffff;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 9px 15px;
+    margin: 8px 0;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    transition: border-color 0.3s;
+    outline: none;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #ff5722;
+}
+
+.password-container {
+    position: relative;
+}
+
+.password-container i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.3s;
+}
+
+.password-container i:hover {
+    color: #ccc;
+}
+
+.form-container label {
+    font-size: 14px;
+    color: #666;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+
+}
+
+.action-button {
+    width: 100%;
+    padding: 7px 0;
+    font-size: 16px;
+    margin-top: 15px;
+    color: #ffffff;
+    background: linear-gradient(90deg, #ff3e3e, #ff0000);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.action-button:hover {
+    background: linear-gradient(90deg, #ff0000, #ff3e3e);
+}
+
+.forgot-password {
+    text-align: right;
+}
+
+.forgot-password a {
+    color: #666; 
+    text-decoration: none;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.forgot-password a:hover {
+    text-decoration: none;
+    color: #007bff; 
+}

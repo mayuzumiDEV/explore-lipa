@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lipa Culture Arts and Tourism</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/h_f_style.css') }}">
+</head>
+<body>
+  {% include 'header.html' %}
+
+  <section class="desplaces">
+    <section class="desplaces-container">
+      <div class="gallery-container">
+          <div class="main-image">
+              <img src="{{ url_for('static', filename=destination.main_image) }}" alt="{{ destination.name }}">
+          </div>
+          <div class="side-images">
+            {% for image in destination.side_images %}
+                <img src="{{ url_for('static', filename=image) }}" alt="{{ destination.name }}">
+            {% endfor %}
+          </div>
+          <div class="side-images">
+            {% for image in destination.side_images1 %}
+                <img src="{{ url_for('static', filename=image) }}" alt="{{ destination.name }}">
+            {% endfor %}
+          </div>
+      </div>
+  
+      <div class="info-container">
+          <h1 class="title mb-3 d-flex align-items-center justify-content-between">
+              {{ destination.name }}
+              <div class="favorite">
+                  <i id="heartIcon" class="far fa-heart"></i>
+              </div>
+          </h1>
+          <div class="details d-flex align-items-center">
+              <div class="derating">
+                  <div class="star-rating">
+                      <p><i class="fa-solid fa-star"></i> {{ destination.rating }} | {{ destination.reviews }} Reviews</p>
+                  </div>
+                  <div class="location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <a href="{{ destination.map_link }}" target="_blank">
+                        {{ destination.display_location }}
+                    </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <hr>
+    </section>
+
+    <section class="desplaces1">
+      <div class="description-container">
+        <div class="description-section">
+          <h5>About</h5>
+          <p>
+              {{ destination.about }}
+          </p>
+        </div>
+      
+        <h5 class="mt-4">More Details</h5>
+        <div class="row">
+          <div class="col-md-6">
+            <ul class="list-unstyled">
+              <li><strong>Type:</strong></li>
+              <li><b>></b> {{ destination.type }}</li>
+            </ul>
+          </div>
+
+          <div class="col-md-6">
+            <ul class="list-unstyled">
+              <li><strong>Focus:</strong></li>
+              <li><b>></b> {{ destination.focus }}</li>
+            </ul>
+          </div>
+
+          <div class="col-md-6">
+            <ul class="list-unstyled">
+              <li><strong>Features:</strong></li>
+              <li><b>></b> {{ destination.features }}</li>
+            </ul>
+          </div>
+
+          <div class="col-md-6">
+            <ul class="list-unstyled">
+              <li><strong>Key Feature:</strong></li>
+              <li><b>></b> {{ destination.kfeature }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="description-container1">
+        <div class="call-to-action">
+          <h2>Welcome to <br> 
+            <span>
+                "{{ destination.name }}"
+            </span>
+          </h2>
+          {% if destination.link and destination.link != '' %}
+          <p>For additional information, please click the button below.</p>
+          <a href="{{ destination.link }}" target="_blank">
+              <button>Click Me!</button>
+          </a>
+          {% endif %}
+
+          {% if destination.qr_code and destination.qr_code != '' %}
+          <div class="call-to-action">
+              <h2>Scan the QR Code</h2>
+              <img src="{{ url_for('static', filename=destination.qr_code) }}" alt="QR Code" class="qr-code">
+          </div>
+          {% endif %}
+        </div>
+    
+        <div class="rating-form">
+          <h2>Kindly rate and leave a comment and recommendation below:</h2>
+          <form action="/submit-rating" method="POST">
+              <input type="text" name="name" placeholder="Your Name" value="{{ session.get('name', '') }}" required readonly>
+
+              <div id="rating-content"></div>
+
+              <div class="st-r-container">
+                <div class="stars-ratings">
+                    <input type="radio" id="star-5" name="star_rate" value="5" required onclick="showRatingText(5)">
+                    <label for="star-5" class="fas fa-star"></label>
+                    <input type="radio" id="star-4" name="star_rate" value="4" onclick="showRatingText(4)">
+                    <label for="star-4" class="fas fa-star"></label>
+                    <input type="radio" id="star-3" name="star_rate" value="3" onclick="showRatingText(3)">
+                    <label for="star-3" class="fas fa-star"></label>
+                    <input type="radio" id="star-2" name="star_rate" value="2" onclick="showRatingText(2)">
+                    <label for="star-2" class="fas fa-star"></label>
+                    <input type="radio" id="star-1" name="star_rate" value="1" onclick="showRatingText(1)">
+                    <label for="star-1" class="fas fa-star"></label>
+                </div>
+              </div>  
+              <input type="text" name="place" placeholder="Place" value="{{ destination['name'] }}" required readonly>
+              <textarea name="comment" placeholder="Comments" required></textarea>
+              <textarea name="recommendation" placeholder="Recommendation" required></textarea>
+              <div class="rfbutton-container">
+                <button class="r-formbtn" type="submit">Submit</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    
+    <section class="allcmt1">
+      <div class="comments-section">
+        <h2>Reviews</h2>
+        <div class="ratings-display">
+            <div class="right-side">
+                <select id="rating-filter" onchange="filterRatings(this.value)">
+                    <option value="all">All Ratings</option>
+                    <option value="5">5 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="2">2 Stars</option>
+                    <option value="1">1 Star</option>
+                </select>
+            </div>
+            <div id="ratings-list">
+                {% if ratings %}
+                    {% for rating in ratings %}
+                        <div class="scrrating" data-star-rate="{{ rating.star_rate }}">
+                            <h4>{{ rating.name }}&nbsp;   
+                                {% for i in range(1, 6) %}
+                                    {% if i <= rating.star_rate %}
+                                        <span style="color: #f39c12;">&#9733;</span>
+                                    {% else %}
+                                        <span style="color: #ccc;">&#9733;</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </h4>
+                            <p>Comment: {{ rating.comment }}</p>
+                            <p>Recommendation: {{ rating.recommendation }}</p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                  <h6>No reviews available.</h6>
+                {% endif %}
+            </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  {% include 'footer.html' %}
+
+  <!--Bootstrap-->
+  <script>
+    function filterRatings(value) {
+      const ratings = document.querySelectorAll('.scrrating');
+      ratings.forEach(rating => {
+          const starRate = parseInt(rating.getAttribute('data-star-rate'));
+          if (value === 'all' && starRate === 5) {
+              rating.style.display = 'block';
+          } else if (value === 'all') {
+              rating.style.display = 'none';
+          } else if (starRate === parseInt(value)) {
+              rating.style.display = 'block';
+          } else {
+              rating.style.display = 'none';
+          }
+      });
+    }
+
+    // Trigger the filter on page load to show only 5-star ratings by default
+    document.addEventListener('DOMContentLoaded', () => {
+        filterRatings('all');
+    });
+    
+    /*
+    function filterRatings(filterType) {
+      const ratingsList = document.querySelectorAll('.scrrating');
+      const ratingsContainer = document.getElementById('ratings-list');
+      
+      if (ratingsList.length === 0) {
+        ratingsContainer.innerHTML = '<h6>No reviews available.</h6>';
+        return;
+      }
+    
+      const ratingsArray = Array.from(ratingsList);
+    
+      ratingsArray.sort((a, b) => {
+        const aRate = parseInt(a.getAttribute('data-star-rate'), 10);
+        const bRate = parseInt(b.getAttribute('data-star-rate'), 10);
+    
+        if (filterType === 'highest') {
+          return bRate - aRate; // Descending order
+        } else if (filterType === 'lowest') {
+          return aRate - bRate; // Ascending order
+        } else {
+          return 0; // No sorting
+        }
+      });
+    
+      ratingsContainer.innerHTML = ''; // Clear the current list
+    
+      ratingsArray.forEach(rating => {
+        ratingsContainer.appendChild(rating); // Append sorted ratings
+      });
+    }
+    */
+
+    /* star rating
+    function filterRatings(type) {
+      const ratingsList = document.getElementById('ratings-list');
+      const ratings = Array.from(ratingsList.getElementsByClassName('scrrating'));
+    
+      ratings.sort((a, b) => {
+        const rateA = parseInt(a.getAttribute('data-star-rate'), 10);
+        const rateB = parseInt(b.getAttribute('data-star-rate'), 10);
+        return type === 'highest' ? rateB - rateA : rateA - rateB;
+      });
+    
+      ratingsList.innerHTML = '';
+    
+      ratings.forEach(rating => {
+        ratingsList.appendChild(rating);
+      });
+    }
+    */
+    
+    function showRatingText(star) {
+      var content = document.getElementById('rating-content');
+      var text = '';
+    
+      switch(star) {
+        case 5:
+            text = 'Very Satisfied';
+            break;
+        case 4:
+            text = 'Satisfied';
+            break;
+        case 3:
+            text = 'Neutral';
+            break;
+        case 2:
+            text = 'Dissatisfied';
+            break;
+        case 1:
+            text = 'Very Dissatisfied';
+            break;
+      }
+    
+      content.innerHTML = text;
+      content.style.display = 'block';
+    }
+
+    //heart icon
+    document.addEventListener("DOMContentLoaded", function() {
+      const heartIcon = document.getElementById("heartIcon");
+  
+      heartIcon.addEventListener("click", function() {
+          heartIcon.classList.toggle("fas");  
+          heartIcon.classList.toggle("far"); 
+      });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+</body>
+</html>

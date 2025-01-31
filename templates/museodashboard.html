@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lipa Culture Arts and Tourism</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adminstyle.css') }}">
+</head>
+
+<body>
+    <div class="wrapper">
+        {% include 'estab2admin/estab2admnav.html' %}
+        <div class="main">
+            <nav class="navbar navbar-expand px-4 py-3">
+                <form action="#" class="d-none d-sm-inline-block">
+                </form>
+                <div class="header--title">
+                    <span>Museo de Lipa</span>
+                    <h2>{{ title }}</h2>
+                </div>
+                <div class="combine">
+                    <div class="clock">
+                        <p id="date"></p>
+                        <p id="time"></p>
+                    </div> 
+                </div>   
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                                <img src="{{ url_for('static', filename='assets/' + (user_image if user_image else 'defaultimg.jpg')) }}" alt="" />
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end rounded">
+                                <a href="{{ url_for('logout') }}">
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        
+            <div class="card--container">
+                <div class="card--wrapper">
+                    <div class="payment--card">
+                        <div class="card--header">
+                            <div class="amount" data-tooltip="Top recommendations based on user feedback and ratings.">
+                                <span class="amount--value">{{ total_recommendations }}</span> 
+                                <span class="title">Recommendations</span>
+                            </div>
+                            <i class="fas fa-book icon"></i>
+                        </div>
+                    </div>
+    
+                    <div class="payment--card">
+                        <div class="card--header">
+                            <div class="amount" data-tooltip="Number of views or visits to your content.">
+                                <span class="amount--value">{{ total_logins }}</span>
+                                <span class="title">Views</span>
+                            </div>
+                            <i class="fas fa-eye icon"></i>
+                        </div>
+                    </div>
+    
+                    <div class="payment--card">
+                        <div class="card--header">
+                            <div class="amount" data-tooltip="Total number of comments or feedback from users.">
+                                <span class="amount--value">{{ total_comments }}</span>
+                                <span class="title">Comments</span>
+                            </div>
+                            <i class="fas fa-comment icon"></i>
+                        </div>
+                    </div>
+    
+                    <div class="payment--card">
+                        <div class="card--header">
+                            <div class="amount" data-tooltip="Total count of 5-star ratings received.">
+                                <span class="amount--value">{{ star_counts['5_star'] }}</span>
+                                <span class="title">5 Star Rate</span>
+                            </div>
+                            <i class="fas fa-star icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="payment--card">
+                        <div class="card--header">
+                            <div class="amount" data-tooltip="Total count of 4-star ratings received.">
+                                <span class="amount--value">{{ star_counts['4_star'] }}</span>
+                                <span class="title">4 Star Rate</span>
+                            </div>
+                            <i class="fas fa-star icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="payment--card">
+                        <div class="card--header">
+                            <div class="amount" data-tooltip="Total count of 3-star ratings received.">
+                                <span class="amount--value">{{ star_counts['3_star'] }}</span>
+                                <span class="title">3 Star Rate</span>
+                            </div>
+                            <i class="fas fa-star icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="payment--card">
+                        <div class="card--header">
+                            <div class="amount" data-tooltip="Total count of 2-star ratings received.">
+                                <span class="amount--value">{{ star_counts['2_star'] }}</span>
+                                <span class="title">2 Star Rate</span>
+                            </div>
+                            <i class="fas fa-star icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="payment--card">
+                        <div class="card--header">
+                            <div class="amount" data-tooltip="Total count of 1-star ratings received.">
+                                <span class="amount--value">{{ star_counts['1_star'] }}</span>
+                                <span class="title">1 Star Rate</span>
+                            </div>
+                            <i class="fas fa-star icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="chartcontainer">
+                <div class="chart">
+                    <div class="piechart-container">
+                        <canvas id="ratingPieChart1"></canvas>
+                    </div>
+            
+                    <script>
+                        var starCounts = [
+                            {{ star_counts['1_star'] }},
+                            {{ star_counts['2_star'] }},
+                            {{ star_counts['3_star'] }},
+                            {{ star_counts['4_star'] }},
+                            {{ star_counts['5_star'] }}
+                        ];
+            
+                        var ctx1 = document.getElementById('ratingPieChart1').getContext('2d');
+                        var ratingPieChart1 = new Chart(ctx1, {
+                            type: 'pie',
+                            data: {
+                                labels: ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'],
+                                datasets: [{
+                                    label: 'Overall Rating Summary',
+                                    data: starCounts,
+                                    backgroundColor: [
+                                        'rgba(255, 236, 33)', 
+                                        'rgba(230, 246, 157)', 
+                                        'rgba(170, 222, 167)', 
+                                        'rgba(100, 194, 166)', 
+                                        'rgba(45, 135, 187)' 
+                                    ],
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    title: {
+                                        display: true, 
+                                        text: 'Overall Rating Summary', 
+                                        font: {
+                                            size: 18, 
+                                            weight: 'bold'
+                                        },
+                                        color: 'black'
+                                    },
+                                    legend: {
+                                        position: 'right',
+                                        labels: {
+                                            boxWidth: 20,
+                                            padding: 15,
+                                            color: 'black'
+                                        }
+                                    },
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function(tooltipItem) {
+                                                return tooltipItem.label + ': ' + tooltipItem.raw + ' votes';
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+            
+                <div class="chart">
+                    <div class="piechart-container">
+                        <canvas id="genderPieChart"></canvas>
+                    </div>
+                
+                    <script>
+                        var genderCounts = [
+                            {{ gender_data['male'] }},
+                            {{ gender_data['female'] }},
+                            {{ gender_data['others'] }},
+                            {{ gender_data['prefer not'] }}
+                        ];
+                
+                        var ctx = document.getElementById('genderPieChart').getContext('2d');
+                        var genderPieChart = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: ['Male', 'Female', 'LGBTQIA+', 'Prefer not to say'],
+                                datasets: [{
+                                    label: 'Gender Distribution',
+                                    data: genderCounts,
+                                    backgroundColor: [
+                                        'rgba(116, 187, 251)',
+                                        'rgba(255, 169, 253)',
+                                        'rgba(251, 226, 159)',
+                                        'rgba(211, 211, 211)'
+                                    ],
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    title: {
+                                        display: true, 
+                                        text: 'Gender Distribution', 
+                                        font: {
+                                            size: 18, 
+                                            weight: 'bold'
+                                        },
+                                        color: 'black'
+                                    },
+                                    legend: {
+                                        position: 'right',
+                                        labels: {
+                                            boxWidth: 20,
+                                            padding: 15,
+                                            color: 'black'
+                                        }
+                                    },
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function(tooltipItem) {
+                                                return tooltipItem.label + ': ' + tooltipItem.raw + ' users';
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+            
+                <div class="chart">
+                    <div class="piechart-container">
+                        <canvas id="addressPieChart"></canvas>
+                    </div>
+                
+                    <script>
+                        var addressData = [
+                            {{ address_data['residents'] }},
+                            {{ address_data['visitors'] }}
+                        ];
+                
+                        var ctx = document.getElementById('addressPieChart').getContext('2d');
+                        var addressPieChart = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: ['Domestic', 'Foreign'],
+                                datasets: [{
+                                    label: 'Tourist Arrivals',
+                                    data: addressData,
+                                    backgroundColor: [
+                                        'rgba(255, 105, 97)', 
+                                        'rgba(119, 221, 119)' 
+                                    ],
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    title: {
+                                        display: true, 
+                                        text: 'Tourist Arrivals', 
+                                        font: {
+                                            size: 18, 
+                                            weight: 'bold'
+                                        },
+                                        color: 'black'
+                                    },
+                                    legend: {
+                                        position: 'right',
+                                        labels: {
+                                            boxWidth: 20,
+                                            padding: 15,
+                                            color: 'black'
+                                        }
+                                    },
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function(tooltipItem) {
+                                                return tooltipItem.label + ': ' + tooltipItem.raw + ' users';
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+
+            <div class="chartcontainerA">
+                <div class="chartA">
+                    <div class="filter-container">
+                        <select id="yearFilter" onchange="filterChart()">
+                            <option value="y1">2024</option>
+                            <option value="y2">2025</option>
+                            <option value="y3">2026</option>
+                            <option value="y4">2027</option>
+                        </select>
+                    </div>
+
+                    <div class="linechart-container">
+                        <canvas id="sayoGalitLineChart"></canvas>
+                    </div>
+                
+                    <script>
+                        var sayoGalitData = {{ monthly_visitors|tojson }};  // Pass the data to JavaScript
+                
+                        var ctx = document.getElementById('sayoGalitLineChart').getContext('2d');
+                        var sayoGalitLineChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], 
+                                datasets: [{
+                                    label: 'Unique Visitors',
+                                    data: sayoGalitData,
+                                    fill: false,
+                                    borderColor: 'rgba(255, 236, 33)',
+                                    borderWidth: 2,
+                                    pointRadius: 5,
+                                    pointBackgroundColor: 'rgba(255, 236, 33)',
+                                    pointHoverRadius: 7,
+                                    pointHoverBackgroundColor: 'rgba(75, 192, 192, 0.8)'
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    title: {
+                                        display: true,
+                                        text: 'Months with the Most Visitors',
+                                        font: {
+                                            size: 18,
+                                            weight: 'bold'
+                                        },
+                                        color: 'black'
+                                    },
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function(tooltipItem) {
+                                                return tooltipItem.label + ': ' + tooltipItem.raw;
+                                            }
+                                        },
+                                        titleFont: {
+                                            color: 'black'  // Set tooltip title font color to black
+                                        },
+                                        bodyFont: {
+                                            color: 'black'  // Set tooltip body font color to black
+                                        }
+                                    }
+                                },
+                                scales: {
+                                    x: {
+                                        beginAtZero: true,
+                                        ticks: {
+                                            color: 'black'  // Set x-axis labels to black
+                                        }
+                                    },
+                                    y: {
+                                        beginAtZero: true,
+                                        ticks: {
+                                            color: 'black'  // Set y-axis labels to black
+                                        }
+                                    }
+                                }
+                            }
+                        });
+
+                        function filterChart() {
+                            var selectedYear = document.getElementById('yearFilter').value;
+                        
+                            // If 2024 is selected, update the chart with the data for 2024
+                            if (selectedYear === 'y1') {
+                                sayoGalitLineChart.data.datasets[0].data = sayoGalitData;
+                            } else {
+                                // Clear the chart or display a message for unavailable years (2025, 2026, 2027)
+                                sayoGalitLineChart.data.datasets[0].data = [];
+                                sayoGalitLineChart.update();
+                                alert('No data available for the selected year.');
+                            }
+                        
+                            // Update the chart to reflect changes
+                            sayoGalitLineChart.update();
+                        }
+                    </script>
+                </div>
+            
+                <div class="chartB">
+                    <div class="barchart-container">
+                        <canvas id="placeChartB"></canvas>
+                    </div>
+                    <script>
+                        var ctx5 = document.getElementById('placeChartB').getContext('2d');
+                        var placeChartB = new Chart(ctx5, {
+                            type: 'bar',  
+                            data: {
+                                labels: {{ place_names | tojson }},
+                                datasets: [{
+                                    label: 'Number of Users Visited',
+                                    data: {{ visit_counts | tojson }},
+                                    backgroundColor: 'rgba(251, 226, 159)',
+                                    borderColor: 'rgba(251, 226, 159)',
+                                    borderWidth: 1,
+                                    barPercentage: 0.8, 
+                                    categoryPercentage: 0.8 
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                indexAxis: 'y', 
+                                scales: {
+                                    x: {
+                                        beginAtZero: true,
+                                        ticks: {
+                                            color: 'black'  // Set x-axis labels to black
+                                        }
+                                    },
+                                    y: {
+                                        position: 'left',
+                                        ticks: {
+                                            color: 'black'  // Set x-axis labels to black
+                                        }
+                                    }
+                                },
+                                plugins: {
+                                    title: {
+                                        display: true,
+                                        text: 'Adventurer Visits to This Place',
+                                        font: {
+                                            size: 18,
+                                            weight: 'bold'
+                                        },
+                                        color: 'black'
+                                    },
+                                    legend: {
+                                        position: 'bottom',
+                                        labels: {
+                                            boxWidth: 20,
+                                            padding: 15,
+                                            color: 'black'
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+
+            <div class="chartcontainerB">
+                <div class="chartC">
+                    <div class="ratings-chart-container">
+                        <canvas id="ratingsChart"></canvas>
+                    </div>
+                    
+                    <script>
+                        const ratingsData = {{ ratings_per_place | tojson }};
+                    
+                        const labels = ratingsData.map(item => item[0]);
+                        const oneStar = ratingsData.map(item => item[1]);
+                        const twoStar = ratingsData.map(item => item[2]);
+                        const threeStar = ratingsData.map(item => item[3]);
+                        const fourStar = ratingsData.map(item => item[4]);
+                        const fiveStar = ratingsData.map(item => item[5]);
+                    
+                        const data = {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: '1 Star',
+                                    backgroundColor: 'rgba(255, 236, 33)',
+                                    data: oneStar
+                                },
+                                {
+                                    label: '2 Stars',
+                                    backgroundColor: 'rgba(230, 246, 157)',
+                                    data: twoStar
+                                },
+                                {
+                                    label: '3 Stars',
+                                    backgroundColor: 'rgba(170, 222, 167)',
+                                    data: threeStar
+                                },
+                                {
+                                    label: '4 Stars',
+                                    backgroundColor: 'rgba(100, 194, 166)',
+                                    data: fourStar
+                                },
+                                {
+                                    label: '5 Stars',
+                                    backgroundColor: 'rgba(45, 135, 187)',
+                                    data: fiveStar
+                                }
+                            ]
+                        };
+                    
+                        const config = {
+                            type: 'bar',
+                            data: data,
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,  
+                                plugins: {
+                                    legend: {
+                                        position: 'top',
+                                        labels: {
+                                            color: 'black'  
+                                        }
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: 'Star Ratings per Place',
+                                        font: {
+                                            size: 18,
+                                            weight: 'bold'
+                                        },
+                                        color: 'black' 
+                                    }
+                                },
+                                scales: {
+                                    x: {
+                                        title: {
+                                            display: true,
+                                            text: 'Places',
+                                            color: 'black'  // Set x-axis title color to black
+                                        },
+                                        ticks: {
+                                            color: 'black'  // Set x-axis labels color to black
+                                        }
+                                    },
+                                    y: {
+                                        title: {
+                                            display: true,
+                                            text: 'Number of Ratings',
+                                            color: 'black'  // Set y-axis title color to black
+                                        },
+                                        ticks: {
+                                            color: 'black'  // Set y-axis labels color to black
+                                        },
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        };
+                    
+                        const ratingsChart = new Chart(
+                            document.getElementById('ratingsChart'),
+                            config
+                        );
+                    </script>
+                </div>
+            </div>
+
+            <!--
+            <div class="tabular--wrapper">
+                <h3 class="main--title">Comments Data</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tourist ID</th>
+                                <th>Adventurer ID</th>
+                                <th>Gender</th>
+                                <th>Contact Number</th>
+                                <th>Address</th>
+                                <th>Age</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in user_profiles %}
+                            <tr>
+                                <td>{{ user[0] }}</td>
+                                <td>{{ user[1] }}</td>
+                                <td>{{ user[2] }}</td>
+                                <td>{{ user[3] }}</td>
+                                <td>{{ user[4] }}</td>
+                                <td>{{ user[5] }}</td>
+                                <td>
+                                    <button class="edit-btn" data-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="delete-btn">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+            <div id="editModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Adventurer Information</h2>
+                    <form id="editForm">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required><br>
+                        <label for="address">Address:</label>
+                        <input type="text" id="address" name="address" required><br>
+                        <label for="contact">Contact Number:</label>
+                        <input type="text" id="contact" name="contact" required><br>
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" name="age" required><br>
+                        <label for="place">Place:</label>
+                        <input type="text" id="place" name="place" required><br>
+                        <button type="submit" class="save-btn">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+            -->
+        </div>
+    </div>
+
+    <script>
+    //toggle btn
+    const hamBurger = document.querySelector(".toggle-btn");
+
+    hamBurger.addEventListener("click", function () {
+    document.querySelector("#sidebar").classList.toggle("expand");
+    });
+
+    //date and time
+    const WEEK = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
+    function updateTime() {
+    var now = new Date();
+
+    let hours = now.getHours();
+    let minutes = zeroPadding(now.getMinutes(), 2);
+    let seconds = zeroPadding(now.getSeconds(), 2);
+    let period = hours >= 12 ? "PM" : "AM";
+
+    // Convert to 12-hour format
+    hours = hours % 12 || 12; // Convert hour "0" to "12" for 12 AM/PM
+
+    document.getElementById("time").innerText =
+        zeroPadding(hours, 2) + ":" + minutes + ":" + seconds + " " + period;
+
+    document.getElementById("date").innerText =
+        now.getFullYear() + "-" +
+        zeroPadding(now.getMonth() + 1, 2) + "-" +
+        zeroPadding(now.getDate(), 2) + " " +
+        WEEK[now.getDay()];
+    }
+
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    function zeroPadding(num, digit) {
+    return num.toString().padStart(digit, '0');
+    }
+
+    //edit or update rating
+    /*
+    var modal = document.getElementById("editModal");
+    var editButtons = document.querySelectorAll(".edit-btn");
+    var closeBtn = document.querySelector(".close-btn");
+
+    editButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            modal.style.display = "flex"; 
+
+            var row = this.closest("tr");
+            document.getElementById("name").value = row.children[1].innerText;
+            document.getElementById("address").value = row.children[2].innerText;
+            document.getElementById("contact").value = row.children[3].innerText;
+            document.getElementById("age").value = row.children[4].innerText;
+            document.getElementById("place").value = row.children[6].innerText;
+        });
+    });
+
+    closeBtn.onclick = function () {
+        closeModal();
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+
+    window.addEventListener('keydown', function (event) {
+        if (event.key === "Escape") {
+            closeModal();
+        }
+    });
+
+    function closeModal() {
+        modal.style.display = "none";
+        document.getElementById("editForm").reset(); 
+    }
+    */
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

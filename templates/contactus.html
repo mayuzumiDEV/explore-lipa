@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lipa Culture Arts and Tourism</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/h_f_style.css') }}">
+</head>
+<body>
+  {% include 'header.html' %}
+
+  <section class="contactus">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p>We are located in Lipa City, Batangas. Feel free to reach out to us for any inquiries, suggestions, or feedback. We are here to assist you!</p>
+    </div>
+  </section>
+
+  <section class="contactus1">
+    <div class="contact-info">
+      <div class="contact-box">
+        <i class="fas fa-map-marker-alt"></i>
+        <h3>OFFICE LOCATION</h3>
+        <p>987 President Jose P. Laurel Hwy, Lipa, 4217 Batangas</p>
+      </div>
+      <div class="contact-box">
+        <i class="fas fa-phone-alt"></i>
+        <h3>PHONE NUMBER</h3>
+        <p>+63 912 567 8987<br>(02) 7 123 4567</p>
+      </div>
+      <div class="contact-box">
+        <i class="fas fa-envelope"></i>
+        <h3>EMAIL</h3>
+        <p>LipaCultureTourism@gmail.com</p>
+      </div>
+      <div class="contact-box">
+        <i class="fas fa-clock"></i>
+        <h3>OPERATING HOURS</h3>
+        <p>Monday to Friday <br> 8:00 AM to 5:00 PM</p>
+      </div>
+    </div>
+
+    <div class="map">
+      <div class="map-container">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12514.91747793227!2d121.16372240894957!3d13.956808905650842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd6c848797ec65%3A0x37c17825aabf1283!2sLipa%20City%20Hall!5e0!3m2!1sen!2sph!4v1602454263985!5m2!1sen!2sph"
+            class="map-iframe"
+            allowfullscreen="" 
+            loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="containerbox">
+      <div class="cont">
+        <form action="{{ url_for('contactus') }}" method="post">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+          </div>
+          <button class="submitbtn" type="submit">Send<i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>  
+  </section>
+
+  {% include 'footer.html' %}
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    {% if session.get('success') %}
+      var myModal = new bootstrap.Modal(document.getElementById('successModal'));
+      myModal.show();
+      {{ session.pop('success') }}  
+    {% endif %}
+  </script>
+</body>
+</html>

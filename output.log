@@ -1,0 +1,56 @@
+nohup: ignoring input
+Successfully connected to the database
+Password for casadesegunda@gmail.com has been updated and hashed.
+Password for museodelipa@gmail.com has been updated and hashed.
+ * Serving Flask app 'app'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8093
+ * Running on http://122.53.28.51:8093
+Press CTRL+C to quit
+122.53.28.50 - - [28/Nov/2024 08:52:26] "GET / HTTP/1.1" 200 -
+122.53.28.50 - - [28/Nov/2024 08:52:26] "GET /static/css/style.css HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:26] "GET /static/assets/officiallogo.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:26] "GET /static/css/h_f_style.css HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:26] "GET /static/assets/officiallipa.png HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:26] "GET /static/assets/lomiking.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:26] "GET /static/assets/foods/Cafe%20de%20Lipa/cafe-front.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:26] "GET /static/assets/defaultimg.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:26] "GET /static/assets/culture/Our%20Lady%20of%20Mount%20Carmel%20Monastery/IMG_20240904_145316_388.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:27] "GET /static/assets/aboutpic.png HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:27] "GET /static/assets/hotels/Anfa%20Hotel/256159_14082809030021657966.webp HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:27] "GET /static/assets/culture/Casa%20de%20Segunda/casa-de-segunda-lipa-city.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:27] "GET /static/assets/lipachurch.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:27] "GET /static/assets/culture/Museo%20ng%20Lipa/IMG_20240904_152640_301.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:27] "GET /static/assets/mtmalarayat.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:27] "GET /static/assets/others/The%20Farm%20At%20San%20Benito/thefarm.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:27] "GET /static/assets/foods/Hapag%20Filipino%20Restaurant/306007148_483893337079874_4801731644450057442_n.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:27] "GET /static/assets/foods/Iroris%20Japanese%20Restaurant/the-only-misono-teppanyaki.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:27] "GET /static/assets/foods/Lucia_s%20Cafe/449709337_1011363210998342_6582157804718614234_n.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:27] "GET /static/assets/foods/Casa%20Marikit%20Ristorante%20Italiano/casa-marikit.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:27] "GET /static/assets/foods/Liam_s%20Lomi%20House/photo0jpg%20(4).jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:27] "GET /static/assets/culture/San%20Sebastian%20Church/sansebastian.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:27] "GET /static/assets/culture/De%20La%20Salle%20Lipa/DLSL_EDU.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:27] "GET /static/assets/Mount%20Malarayat%20Golf%20and%20Country%20Club6%204.JPG HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:27] "GET /static/assets/hotels/El%20Grande%20Residencia/461749456_8411221882298244_4949718750930748191_n.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:27] "GET /static/assets/hotels/Super%20Mild%20Hotel%20Sosyal%20Place/Super%20Mild%20Hotel%20Sosyal%20Place%201.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:27] "GET /static/assets/hotels/Meaco%20Royal%20Hotel%20Inc/Meaco%20Royal%20Hotel%201.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:30] "GET /logout HTTP/1.1" 302 -
+122.53.28.50 - - [28/Nov/2024 08:52:30] "GET /login HTTP/1.1" 200 -
+122.53.28.50 - - [28/Nov/2024 08:52:30] "GET /static/css/regstyle.css HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:30] "GET /static/css/h_f_style.css HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:30] "GET /static/css/style.css HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:30] "GET /static/assets/officiallipa.png HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:30] "GET /static/assets/at1.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:30] "GET /static/assets/at2.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:42] "POST /login HTTP/1.1" 302 -
+122.53.28.50 - - [28/Nov/2024 08:52:42] "GET /admin/dashboard HTTP/1.1" 200 -
+122.53.28.50 - - [28/Nov/2024 08:52:42] "GET /static/css/adminstyle.css HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:42] "GET /static/assets/defaultimg.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:45] "GET /admin/reports HTTP/1.1" 200 -
+122.53.28.50 - - [28/Nov/2024 08:52:45] "GET /static/css/adminstyle.css HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:45] "GET /static/assets/defaultimg.jpg HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:53] "GET /admin/reports HTTP/1.1" 200 -
+122.53.28.50 - - [28/Nov/2024 08:52:53] "GET /static/css/adminstyle.css HTTP/1.1" 304 -
+122.53.28.50 - - [28/Nov/2024 08:52:54] "GET /static/assets/defaultimg.jpg HTTP/1.1" 304 -

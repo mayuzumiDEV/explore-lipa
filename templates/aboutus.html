@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lipa Culture Arts and Tourism</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/h_f_style.css') }}">
+</head>
+<body>
+  {% include 'header.html' %}
+  
+  <section class="about1">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="about-image">
+            <img src="{{ url_for('static', filename='assets/aboutpic.png') }}" alt="About Us Image">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="about-content">
+            <h6 class="section-title">About Us</h6>
+            <h1>Discover the Wonders of Our Attractions</h1>
+            <p>
+              Lipa City, Batangas, has a rich and diverse cultural heritage influenced by ancient roots from Bornean 
+              settlers and Indian and Chinese civilizations. Its historical landmarks, like the San Sebastian Cathedral 
+              and Plaza Independencia, reflect its colonial past.
+            </p>
+            <p>
+              Lipa's vibrant festivals showcase religious and 
+              cultural traditions. The city has emerged as a hub for arts and culture, with initiatives like the Lipa 
+              Academy of Sports, Culture, and the Arts (LASCA) promoting local talent.
+            </p>
+            <a href="{{ url_for('aboutus') }}" class="btn btn-primary">
+               Learn More <i class="fas fa-info-circle"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="feature">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="d-flex feature-box mb-4 mb-lg-0">
+            <div class="icon-wrapper d-flex align-items-center justify-content-center mr-3">
+              <i class="fa fa-2x fa-building text-white"></i>
+            </div>
+            <div class="d-flex flex-column">
+              <h5>Historical Landmarks</h5>
+              <p class="m-0">Lipa City is home to important historical landmarks like the San Sebastian Cathedral and Plaza Independencia, reflecting its rich colonial past.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="d-flex feature-box mb-4 mb-lg-0">
+            <div class="icon-wrapper d-flex align-items-center justify-content-center mr-3">
+              <i class="fa fa-2x fa fa-child text-white"></i>
+            </div>
+            <div class="d-flex flex-column">
+              <h5>Vibrant Festivals</h5>
+              <p class="m-0">Lipa hosts colorful and lively festivals that celebrate its religious and cultural traditions, making it a vibrant part of Filipino heritage.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="d-flex feature-box mb-4 mb-lg-0">
+            <div class="icon-wrapper d-flex align-items-center justify-content-center mr-3">
+              <i class="fa fa-2x fa-palette text-white"></i>
+            </div>
+            <div class="d-flex flex-column">
+              <h5>Arts and Culture</h5>
+              <p class="m-0">Lipa City has become a hub for arts and culture, with the Lipa Academy of Sports, Culture, and the Arts (LASCA) promoting local talent and initiatives.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 py-3">
+          <div class="d-flex feature-box mb-4 mb-lg-0">
+            <div class="icon-wrapper d-flex align-items-center justify-content-center mr-3">
+              <i class="fa fa-2x fa-building text-white"></i>
+            </div>
+            <div class="d-flex flex-column">
+              <h5>Modern Architecture</h5>
+              <p class="m-0">Lipa City boasts modern architectural structures that blend contemporary design with functionality, enhancing the city's skyline.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 py-3">
+          <div class="d-flex feature-box mb-4 mb-lg-0">
+            <div class="icon-wrapper d-flex align-items-center justify-content-center mr-3">
+              <i class="fa fa-2x fa-tree text-white"></i>
+            </div>
+            <div class="d-flex flex-column">
+              <h5>Natural Parks</h5>
+              <p class="m-0">Explore the lush green spaces and natural parks in Lipa, providing a perfect blend of nature and relaxation.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 py-3">
+          <div class="d-flex feature-box mb-4 mb-lg-0">
+            <div class="icon-wrapper d-flex align-items-center justify-content-center mr-3">
+              <i class="fa fa-2x fa-utensils text-white"></i>
+            </div>
+            <div class="d-flex flex-column">
+              <h5>Culinary Delights</h5>
+              <p class="m-0">Taste the rich flavors of Lipa's culinary scene, offering a variety of local delicacies and international cuisine.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="faqs">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              What is the best time to visit Lipa City?
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              The best time to visit is during the dry season, typically from November to April, when the weather is cooler and more suitable for outdoor activities.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Are there any discounts available for tourists in Lipa City?
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes, some tourist attractions in Lipa City offer discounts for group bookings, senior citizens, and students. It’s best to inquire directly with each attraction.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              What are the top tourist attractions in Lipa City?
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Some of the top attractions in Lipa City include the San Sebastian Cathedral, Malls, Parks, Hotels, and the Museo ng Lipa.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              Are there local transportation options for tourists in Lipa City?
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes, local transportation options include jeepneys, and tricycles. Public buses also run between Lipa City and nearby areas.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFive">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              Are there accommodations for tourists in Lipa City?
+            </button>
+          </h2>
+          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes, Lipa City offers a variety of accommodations ranging from budget hotels to upscale resorts, such as Aquamarine Hotes and JET Hotel and etc.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingSix">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+              Is Lipa City known for any local food specialties?
+            </button>
+          </h2>
+          <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes, Lipa City is known for its coffee, especially Kapeng Barako, and local delicacies like Lomi and etc.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingSeven">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+              What should I bring when visiting Lipa City?
+            </button>
+          </h2>
+          <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              It's recommended to bring comfortable clothing, sunscreen, a hat, and a camera for sightseeing, as well as an umbrella or raincoat during the rainy season.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingEight">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+              Are there any family-friendly attractions in Lipa City?
+            </button>
+          </h2>
+          <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes, Lipa City has family-friendly attractions such as the San Sebastian Cathedral and Liam's Lomi House.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingNine">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+              Is Lipa City safe for tourists?
+            </button>
+          </h2>
+          <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes, Lipa City is generally safe for tourists. As with any destination, it's recommended to exercise standard safety precautions.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTen">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+              Can I access the internet in Lipa City?
+            </button>
+          </h2>
+          <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes, most hotels, cafes, and restaurants in Lipa City offer Wi-Fi for customers. Public Wi-Fi is also available in some public areas.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% include 'footer.html' %}
+
+  <!--Bootstrap-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  
+</body>
+</html>

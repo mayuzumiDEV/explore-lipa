@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lipa Culture Arts and Tourism</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adminstyle.css') }}">
+</head>
+<body>
+    <div class="wrapper">
+        {% include 'estab2admin/estab2admnav.html' %}
+        <div class="main">
+            <nav class="navbar navbar-expand px-4 py-3">
+                <form action="#" class="d-none d-sm-inline-block">
+                </form>
+                <div class="header--title">
+                    <span>Museo de Lipa</span>
+                    <h2>{{ title }}</h2>
+                </div>
+                <div class="combine">
+                    <div class="clock">
+                        <p id="date"></p>
+                        <p id="time"></p>
+                    </div>
+                </div>   
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                                <img src="{{ url_for('static', filename='assets/' + (user_image if user_image else 'defaultimg.jpg')) }}" alt="" />
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end rounded">
+                                <a href="{{ url_for('logout') }}">
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="tabular--wrapper">
+                <h3 class="main--title">Adventurer Comments and Feedback</h3>
+                
+                <div class="controls-container">
+                    <form method="GET" action="{{ url_for('estab2adm.feedback') }}">
+                        <label for="month"></label>
+                        <select name="month" id="month" onchange="this.form.submit()">
+                            <option value="">Month</option>
+                            <option value="01" {% if selected_month == "01" %}selected{% endif %}>January</option>
+                            <option value="02" {% if selected_month == "02" %}selected{% endif %}>February</option>
+                            <option value="03" {% if selected_month == "03" %}selected{% endif %}>March</option>
+                            <option value="04" {% if selected_month == "04" %}selected{% endif %}>April</option>
+                            <option value="05" {% if selected_month == "05" %}selected{% endif %}>May</option>
+                            <option value="06" {% if selected_month == "06" %}selected{% endif %}>June</option>
+                            <option value="07" {% if selected_month == "07" %}selected{% endif %}>July</option>
+                            <option value="08" {% if selected_month == "08" %}selected{% endif %}>August</option>
+                            <option value="09" {% if selected_month == "09" %}selected{% endif %}>September</option>
+                            <option value="10" {% if selected_month == "10" %}selected{% endif %}>October</option>
+                            <option value="11" {% if selected_month == "11" %}selected{% endif %}>November</option>
+                            <option value="12" {% if selected_month == "12" %}selected{% endif %}>December</option>
+                        </select>
+                    </form>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Comment ID</th>
+                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Place</th>
+                                <th>Comments</th>
+                                <th>Recommends</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if feedbacks %}
+                                {% for feedback in feedbacks %}
+                                <tr>
+                                    <td>{{ feedback[0] }}</td>
+                                    <td>{{ feedback[1] }}</td>
+                                    <td>{{ feedback[2] }}</td>
+                                    <td>{{ feedback[3] }}</td>
+                                    <td>{{ feedback[4] }}</td> <!-- Comments -->
+                                    <td>{{ feedback[5] }}</td> <!-- Recommendation -->
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="6" style="text-align: center; font-weight: 600; font-size: 14px">No feedback available for the selected month.</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>    
+    </div>
+
+    <script>
+        const hamBurger = document.querySelector(".toggle-btn");
+    
+        hamBurger.addEventListener("click", function () {
+            document.querySelector("#sidebar").classList.toggle("expand");
+        });
+    
+        const WEEK = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+    
+        function updateTime() {
+            const now = new Date();
+    
+            let hours = now.getHours();
+            let minutes = zeroPadding(now.getMinutes(), 2);
+            let seconds = zeroPadding(now.getSeconds(), 2);
+            let period = hours >= 12 ? "PM" : "AM";
+    
+            hours = hours % 12 || 12;
+    
+            document.getElementById("time").innerText =
+                zeroPadding(hours, 2) + ":" + minutes + ":" + seconds + " " + period;
+    
+            document.getElementById("date").innerText =
+                now.getFullYear() + "-" +
+                zeroPadding(now.getMonth() + 1, 2) + "-" +
+                zeroPadding(now.getDate(), 2) + " " +
+                WEEK[now.getDay()];
+        }
+    
+        setInterval(updateTime, 1000);
+    
+        function zeroPadding(num, digit) {
+            return num.toString().padStart(digit, '0');
+        }
+
+    //search clear
+    document.querySelector('.search-input').addEventListener('input', function() {
+        if (this.value.trim() === '') {
+            document.querySelector('form').submit();
+        }
+    });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

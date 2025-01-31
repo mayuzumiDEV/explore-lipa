@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lipa Culture Arts and Tourism</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/regstyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/h_f_style.css') }}">
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <div class="bg">
+        <section class="header-container">
+            <div class="lgcontainer" id="container">
+                <div class="toggle-b-container">
+                    <div class="toggle-buttons">
+                        <button id="login-tab" class="toggle-button active">Log In</button>
+                        <button id="register-tab" class="toggle-button">Register</button>
+                    </div>
+                </div>
+
+                <div class="form-container" id="register-container" style="display: none;">
+                    <form method="POST" action="{{ url_for('login') }}">
+                        <input type="text" placeholder="User Name" name="name" required>
+                        <input type="email" placeholder="Email ID" name="email" required>
+                        <div class="password-container">
+                            <input type="password" placeholder="Enter Password" id="password-signup" name="password" required>
+                            <i class="fa fa-eye" id="toggle-password-signup"></i>
+                        </div>
+                        <label>
+                            <input type="checkbox" name="terms"> I agree to the Terms & Conditions
+                        </label>
+                        <button type="submit" class="action-button" name="signup">Register</button>
+                    </form>
+                </div>
+
+                <div class="form-container" id="login-container">
+                    <form method="POST" action="{{ url_for('login') }}">
+                        <br>
+                        <input type="email" placeholder="Email ID" name="email" required>
+                        <div class="password-container">
+                            <input type="password" placeholder="Enter Password" id="password-signin" name="password" required>
+                            <i class="fa fa-eye" id="toggle-password-signin"></i>
+                        </div>
+                        <div class="forgot-password">
+                            <a href="/forgot-password">Forgot Password?</a>
+                        </div>
+                        <label>
+                            <input type="checkbox" name="remember"> Remember Password
+                        </label>
+                        <button type="submit" class="action-button" name="signin">Log In</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>    
+
+    {% include 'footer.html' %}
+
+    <script>
+        const registerTab = document.getElementById('register-tab');
+        const loginTab = document.getElementById('login-tab');
+        const registerContainer = document.getElementById('register-container');
+        const loginContainer = document.getElementById('login-container');
+
+        registerTab.addEventListener('click', () => {
+            loginContainer.style.display = 'none';
+            registerContainer.style.display = 'block';
+            loginTab.classList.remove("active");
+            registerTab.classList.add("active");
+        });
+
+        loginTab.addEventListener('click', () => {
+            registerContainer.style.display = 'none';
+            loginContainer.style.display = 'block';
+            registerTab.classList.remove("active");
+            loginTab.classList.add("active");
+        });
+
+        function togglePasswordVisibility(inputId, iconId) {
+            const passwordInput = document.getElementById(inputId);
+            const toggleIcon = document.getElementById(iconId);
+            toggleIcon.addEventListener('click', () => {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                toggleIcon.classList.toggle('fa-eye');
+                toggleIcon.classList.toggle('fa-eye-slash');
+            });
+        }
+
+        togglePasswordVisibility('password-signup', 'toggle-password-signup');
+        togglePasswordVisibility('password-signin', 'toggle-password-signin');
+    </script>
+</body>
+</html>

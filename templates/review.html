@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lipa Culture Arts and Tourism</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adminstyle.css') }}">
+</head>
+<body>
+    <div class="wrapper">
+        {% include 'admin/admnav.html' %}
+        <div class="main">
+            <nav class="navbar navbar-expand px-4 py-3">
+                <form action="#" class="d-none d-sm-inline-block">
+                </form>
+                <div class="header--title">
+                    <span>Lipa City Culture Arts and Tourism</span>
+                    <h2>{{ title }}</h2>
+                </div>
+                <div class="combine">
+                    <div class="clock">
+                        <p id="date"></p>
+                        <p id="time"></p>
+                    </div>
+                </div>   
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                                <img src="{{ url_for('static', filename='assets/' + (user_image if user_image else 'defaultimg.jpg')) }}" alt="" />
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end rounded">
+                                <a href="{{ url_for('logout') }}">
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="tabular--wrapper">
+                <h3 class="main--title">Adventurer Review</h3>
+            
+                <div class="controls-container">
+                    <div class="search-container">
+                        <form action="{{ url_for('adm.review') }}" method="get">
+                            <input type="text" name="place_filter" class="search-input" placeholder="Search by place..." value="{{ place_filter or '' }}">
+                            <input type="hidden" name="star_filter" value="{{ star_filter or '' }}">
+                            <button type="submit" class="search-button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+            
+                    <form method="GET" action="{{ url_for('adm.review') }}">
+                        <label for="star_filter"></label>
+                        <select name="star_filter" id="star_filter" onchange="this.form.submit()">
+                            <option value="">All</option>
+                            <option value="1" {% if star_filter == 1 %}selected{% endif %}>1 Star</option>
+                            <option value="2" {% if star_filter == 2 %}selected{% endif %}>2 Stars</option>
+                            <option value="3" {% if star_filter == 3 %}selected{% endif %}>3 Stars</option>
+                            <option value="4" {% if star_filter == 4 %}selected{% endif %}>4 Stars</option>
+                            <option value="5" {% if star_filter == 5 %}selected{% endif %}>5 Stars</option>
+                        </select>
+                    </form>
+                </div>            
+            
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Review ID</th>
+                                <th>Name</th>
+                                <th>Date and Time</th>
+                                <th>Place</th>
+                                <th>Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for review in reviews %}
+                            <tr>
+                                <td>{{ review[0] }}</td>
+                                <td>{{ review[1] }}</td>
+                                <td>{{ review[2] }}</td>
+                                <td>{{ review[3] }}</td>
+                                <td>
+                                    {% for i in range(review[4]) %}
+                                    <i class="fa-solid fa-star" style="color: rgb(255, 187, 0); font-size: 20px;"></i>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>  
+
+    <script>
+        const hamBurger = document.querySelector(".toggle-btn");
+    
+        hamBurger.addEventListener("click", function () {
+            document.querySelector("#sidebar").classList.toggle("expand");
+        });
+    
+        const WEEK = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+    
+        function updateTime() {
+            const now = new Date();
+    
+            let hours = now.getHours();
+            let minutes = zeroPadding(now.getMinutes(), 2);
+            let seconds = zeroPadding(now.getSeconds(), 2);
+            let period = hours >= 12 ? "PM" : "AM";
+    
+            hours = hours % 12 || 12;
+    
+            document.getElementById("time").innerText =
+                zeroPadding(hours, 2) + ":" + minutes + ":" + seconds + " " + period;
+    
+            document.getElementById("date").innerText =
+                now.getFullYear() + "-" +
+                zeroPadding(now.getMonth() + 1, 2) + "-" +
+                zeroPadding(now.getDate(), 2) + " " +
+                WEEK[now.getDay()];
+        }
+    
+        setInterval(updateTime, 1000);
+    
+        function zeroPadding(num, digit) {
+            return num.toString().padStart(digit, '0');
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
